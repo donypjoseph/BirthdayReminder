@@ -1,0 +1,6 @@
+module Pods_BirthdayReminder_BirthdayReminderTests {
+  umbrella header "Pods-BirthdayReminder-BirthdayReminderTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
