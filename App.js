@@ -5,22 +5,12 @@
  * @format
  * @flow strict-local
  */
-
+import "react-native-gesture-handler";
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import AppNavigator from "./src/navigation/AppNavigator";
 
 const App = () => {
-  return (
-    <View style={styles.body}>
-      <Text>React Native Project</Text>
-    </View>
-  );
+  return <AppNavigator></AppNavigator>;
 };
-
-const styles = StyleSheet.create({
-  body: {
-    backgroundColor: "red",
-  },
-});
 
 export default App;
