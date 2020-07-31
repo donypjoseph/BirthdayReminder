@@ -1,7 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/HomeScreen";
-
 const HomeStack = createStackNavigator();
 
 export const HomeNavigator = () => {
@@ -10,16 +9,7 @@ export const HomeNavigator = () => {
       <HomeStack.Screen
         name="Home"
         component={HomeScreen}
-        options={{
-          title: "My home",
-          headerStyle: {
-            backgroundColor: "#f4511e",
-          },
-          headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontWeight: "500",
-          },
-        }}
+        options={{ title: "Birthdays" }}
       />
     </HomeStack.Navigator>
   );
