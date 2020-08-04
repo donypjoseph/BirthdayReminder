@@ -23,7 +23,7 @@ const HomeScreen = () => (
       <ListItem
         key={i}
         leftIcon={
-          <Icon name="birthday-cake" type="font-awesome" color="#517fa4" />
+          <Icon name="user" type="evilicon" color="#517fa4" size={40} />
         }
         // leftAvatar={{ source: { uri: l.avatar_url } }}
         title={l.name}

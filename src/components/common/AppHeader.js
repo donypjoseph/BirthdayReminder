@@ -4,23 +4,15 @@ import { Header } from "react-native-elements";
 
 const AppHeader = () => (
   <Header
-    leftComponent={{ icon: "menu", color: "#fff" }}
-    centerComponent={{ text: "MY TITLE", style: { color: "#fff" } }}
-    rightComponent={{ icon: "home", color: "#fff" }}
+    placement="left"
+    leftComponent={{
+      icon: "birthday-cake",
+      type: "font-awesome",
+      color: "#fff",
+    }}
+    centerComponent={{ text: "Birthdays", style: { color: "#fff" } }}
+    rightComponent={{ icon: "add", color: "#fff" }}
   />
-  // <SafeAreaView style={{ flex: 1, backgroundColor: "red" }}>
-  //   <View style={styles.headerContainer}>
-  //     <View style={styles.leftSectionContainer}>
-  //       <Text>left</Text>
-  //     </View>
-  //     <View style={styles.middleSectionContainer}>
-  //       <Text>middle</Text>
-  //     </View>
-  //     <View style={styles.rightSectionContainer}>
-  //       <Text>right</Text>
-  //     </View>
-  //   </View>
-  // </SafeAreaView>
 );
 
 const styles = StyleSheet.create({
