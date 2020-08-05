@@ -2,16 +2,33 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Header } from "react-native-elements";
 
-const AppHeader = () => (
+const AppHeader = (props) => (
   <Header
-    placement="left"
+    placement={props.placement}
     leftComponent={{
-      icon: "birthday-cake",
-      type: "font-awesome",
+      icon: props.leftComponent?.icon,
+      text: props.leftComponent?.text,
+      type: props.leftComponent?.type,
       color: "#fff",
+      size: 30,
+      style: { color: "#fff" },
+      onPress: props.leftComponent?.onPress,
     }}
-    centerComponent={{ text: "Birthdays", style: { color: "#fff" } }}
-    rightComponent={{ icon: "add", color: "#fff" }}
+    centerComponent={{
+      text: props.centerComponent?.text,
+      style: { color: "#fff" },
+    }}
+    rightComponent={{
+      icon: props.rightComponent?.icon,
+      color: "#fff",
+      size: 30,
+      onPress: props.rightComponent?.onPress,
+      style: { color: "#fff" },
+    }}
+    containerStyle={{
+      color: "#3D6DCC",
+      justifyContent: "space-around",
+    }}
   />
 );
 

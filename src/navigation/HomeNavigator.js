@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "../screens/HomeScreen";
-import AppHeader from "../components/common/AppHeader";
+import HomeScreen, { HomeScreenHeader } from "../screens/HomeScreen";
+import AddUserScreen, { AddUserScreenHeader } from "../screens/AddUserScreen";
 
 const HomeStack = createStackNavigator();
 
@@ -13,7 +13,16 @@ export const HomeNavigator = () => {
         component={HomeScreen}
         options={{
           header: ({ navigation }) => {
-            return <AppHeader {...navigation} />;
+            return <HomeScreenHeader {...navigation} />;
+          },
+        }}
+      />
+      <HomeStack.Screen
+        name="AddUser"
+        component={AddUserScreen}
+        options={{
+          header: ({ navigation }) => {
+            return <AddUserScreenHeader {...navigation} />;
           },
         }}
       />

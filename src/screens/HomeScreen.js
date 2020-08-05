@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { ListItem } from "react-native-elements";
 import { Icon } from "react-native-elements";
+import AppHeader from "../components/common/AppHeader";
 
 const list = [
   {
@@ -33,6 +34,7 @@ const HomeScreen = () => (
     ))}
   </View>
 );
+
 const styles = StyleSheet.create({
   TextStyle: {
     display: "flex",
@@ -43,3 +45,19 @@ const styles = StyleSheet.create({
   },
 });
 export default HomeScreen;
+
+export const HomeScreenHeader = (navigation) => {
+  return (
+    <AppHeader
+      leftComponent={{
+        icon: "birthday-cake",
+        type: "font-awesome",
+      }}
+      centerComponent={{ text: "Birthdays" }}
+      rightComponent={{
+        icon: "add",
+        onPress: () => navigation.navigate("AddUser"),
+      }}
+    />
+  );
+};
