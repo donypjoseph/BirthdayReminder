@@ -1,10 +1,10 @@
 import React from "react";
 import { Text, View } from "react-native";
 import AppHeader from "../components/common/AppHeader";
-
+import AddUser from "../components/AddUser/AddUser";
 const AddUserScreen = ({ params }) => (
   <View>
-    <Text>componentName</Text>
+    <AddUser />
   </View>
 );
 
