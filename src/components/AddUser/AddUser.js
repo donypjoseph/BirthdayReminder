@@ -1,53 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Text, View, TextInput, StyleSheet } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { Card } from "react-native-elements";
 import DefaultTheme from "../../themes/DefaultTheme";
 import { Button } from "react-native-elements";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import moment from "moment";
 
-const AddUser = ({ params }) => {
+const AddUser = () => {
   const { control, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
-  const [date, setDate] = useState(new Date(1598051730000));
-  const [mode, setMode] = useState("date");
+  const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
+  const firstNameRef = useRef();
+  const data = moment(date).format("DD/MMM/YYYY");
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+  const onFocus = (show) => {
+    setShow(!show);
+  };
+  console.log("errors", errors);
   return (
     <Card title="ADD NEW ENTRY">
       <View style={styles.container}>
         <Text style={styles.label}>Name</Text>
         <Controller
           control={control}
-          render={({ onChange, onBlur, value }) => (
+          name="firstName"
+          rules={{ required: "This is required" }}
+          onFocus={() => {
+            firstNameRef.current.focus();
+          }}
+          render={({ onChange, value }) => (
             <TextInput
               style={styles.input}
-              onBlur={onBlur}
               onChangeText={(value) => onChange(value)}
               value={value}
+              ref={firstNameRef}
             />
           )}
-          name="Name"
         />
-        <Text style={styles.label}>Last name</Text>
+        {errors.firstName && <Text>This is required.</Text>}
+        <Text style={styles.label}>Date of Birth</Text>
         <Controller
           control={control}
-          render={({ onChange, onBlur, value }) => (
+          render={({ onChange, value }) => (
             <TextInput
               style={styles.input}
-              onBlur={onBlur}
               onChangeText={(value) => onChange(value)}
-              value={value}
+              onFocus={() => onFocus(show)}
+              value={data}
+              rules={{ required: "This is required" }}
             />
           )}
           name="lastName"
         />
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode={mode}
-          is24Hour={true}
-          display="default"
-        />
+        {show && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            is24Hour={true}
+            display="default"
+            onChange={(event, value) => setDate(value)}
+          />
+        )}
         <View style={styles.button}>
           <Button
             type="solid"
