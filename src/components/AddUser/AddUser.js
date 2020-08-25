@@ -1,78 +1,39 @@
 import React, { useState, useRef } from "react";
 import { Text, View, TextInput, StyleSheet } from "react-native";
-import { useForm, Controller } from "react-hook-form";
 import { Card } from "react-native-elements";
-import DefaultTheme from "../../themes/DefaultTheme";
 import { Button } from "react-native-elements";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import moment from "moment";
+import { Formik } from "formik";
+
+import DefaultTheme from "../../themes/DefaultTheme";
 
 const AddUser = () => {
-  const { control, handleSubmit, errors } = useForm();
-  const [date, setDate] = useState(new Date());
-  const [show, setShow] = useState(false);
-  const firstNameRef = useRef();
-  const data = moment(date).format("DD/MMM/YYYY");
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-  const onFocus = (show) => {
-    setShow(!show);
-  };
-  console.log("errors", errors);
   return (
-    <Card title="ADD NEW ENTRY">
-      <View style={styles.container}>
-        <Text style={styles.label}>Name</Text>
-        <Controller
-          control={control}
-          name="firstName"
-          rules={{ required: "This is required" }}
-          onFocus={() => {
-            firstNameRef.current.focus();
-          }}
-          render={({ onChange, value }) => (
+    <Formik
+      initialValues={{ name: "" }}
+      onSubmit={(values) => console.log(values)}
+    >
+      {({ handleChange, handleSubmit, values }) => (
+        <Card title="ADD NEW ENTRY">
+          <View style={styles.container}>
+            <Text style={styles.label}>Name</Text>
             <TextInput
               style={styles.input}
-              onChangeText={(value) => onChange(value)}
-              value={value}
-              ref={firstNameRef}
+              onChangeText={handleChange("name")}
+              value={values.name}
             />
-          )}
-        />
-        {errors.firstName && <Text>This is required.</Text>}
-        <Text style={styles.label}>Date of Birth</Text>
-        <Controller
-          control={control}
-          render={({ onChange, value }) => (
+            <Text style={styles.label}>Date of Birth</Text>
             <TextInput
               style={styles.input}
-              onChangeText={(value) => onChange(value)}
-              onFocus={() => onFocus(show)}
-              value={data}
-              rules={{ required: "This is required" }}
+              onChangeText={handleChange("dob")}
+              value={values.dob}
             />
-          )}
-          name="lastName"
-        />
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            is24Hour={true}
-            display="default"
-            onChange={(event, value) => setDate(value)}
-          />
-        )}
-        <View style={styles.button}>
-          <Button
-            type="solid"
-            title="Submit"
-            onPress={handleSubmit(onSubmit)}
-          />
-        </View>
-      </View>
-    </Card>
+            <View style={styles.button}>
+              <Button type="solid" onPress={handleSubmit} title="Submit" />
+            </View>
+          </View>
+        </Card>
+      )}
+    </Formik>
   );
 };
 
