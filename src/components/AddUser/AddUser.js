@@ -1,39 +1,66 @@
 import React, { useState, useRef } from "react";
-import { Text, View, TextInput, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { Card } from "react-native-elements";
 import { Button } from "react-native-elements";
 import { Formik } from "formik";
+import moment from "moment";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import DefaultTheme from "../../themes/DefaultTheme";
 
-const AddUser = () => {
+export const AddUser = (props) => {
+  const { handleChange, handleSubmit, values, setFieldValue } = props;
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    setFieldValue("myDate", moment(date).format("YYYY-MM-DD"));
+    hideDatePicker();
+  };
+
   return (
-    <Formik
-      initialValues={{ name: "" }}
-      onSubmit={(values) => console.log(values)}
-    >
-      {({ handleChange, handleSubmit, values }) => (
-        <Card title="ADD NEW ENTRY">
-          <View style={styles.container}>
-            <Text style={styles.label}>Name</Text>
+    <View style={styles.container}>
+      <Card title="ADD NEW ENTRY">
+        <View style={styles.container}>
+          <Text style={styles.label}>Name</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={handleChange("name")}
+            value={values.name}
+          />
+          <Text style={styles.label}>Date of Birth</Text>
+          <TouchableOpacity style={styles.input} onPress={showDatePicker}>
             <TextInput
-              style={styles.input}
-              onChangeText={handleChange("name")}
-              value={values.name}
+              pointerEvents="none"
+              value={moment(values.myDate).format("YYYY-MM-DD")}
             />
-            <Text style={styles.label}>Date of Birth</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={handleChange("dob")}
-              value={values.dob}
-            />
-            <View style={styles.button}>
-              <Button type="solid" onPress={handleSubmit} title="Submit" />
-            </View>
+          </TouchableOpacity>
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+            date={moment(values.myDate).toDate()}
+          />
+          <View style={styles.button}>
+            <Button type="solid" onPress={handleSubmit} title="Submit" />
           </View>
-        </Card>
-      )}
-    </Formik>
+        </View>
+      </Card>
+    </View>
   );
 };
 
