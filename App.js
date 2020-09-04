@@ -15,6 +15,7 @@ const store = createStore(rootReducer);
 const App = () => {
   return (
     <Provider store={store}>
+      {(console.disableYellowBox = true)}
       <AppNavigator></AppNavigator>
     </Provider>
   );

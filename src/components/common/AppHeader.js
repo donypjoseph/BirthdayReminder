@@ -1,7 +1,7 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
 import { Header } from "react-native-elements";
 import DefaultTheme from "../../themes/DefaultTheme";
+import appStyles from "../../themes/styles/AppStyles";
 
 const AppHeader = (props) => (
   <Header
@@ -26,14 +26,8 @@ const AppHeader = (props) => (
       onPress: props.rightComponent?.onPress,
       style: { color: DefaultTheme.headerTextColor },
     }}
-    containerStyle={styles.containerStyle}
+    containerStyle={appStyles.containerStyle}
   />
 );
 
-const styles = StyleSheet.create({
-  containerStyle: {
-    color: "#3D6DCC",
-    justifyContent: "space-around",
-  },
-});
 export default AppHeader;

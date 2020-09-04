@@ -1,5 +1,5 @@
 export const ADD_USER = "ADD_USER";
 
-export const addUser = (name) => {
-  return { type: ADD_USER, name: name };
+export const addUser = (user) => {
+  return { type: ADD_USER, payload: user };
 };
