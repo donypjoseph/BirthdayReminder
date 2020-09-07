@@ -1,22 +1,18 @@
 import "react-native-gesture-handler";
 import React from "react";
-import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 import AppNavigator from "./src/navigation/AppNavigator";
-import userReducer from "./src/store/reducers/UserReducer";
-
-const rootReducer = combineReducers({
-  user: userReducer,
-});
-
-const store = createStore(rootReducer);
+import { store, persistor } from "./src/store/store";
 
 const App = () => {
   return (
     <Provider store={store}>
       {(console.disableYellowBox = true)}
-      <AppNavigator></AppNavigator>
+      <PersistGate loading={null} persistor={persistor}>
+        <AppNavigator></AppNavigator>
+      </PersistGate>
     </Provider>
   );
 };
