@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/core";
+import uuid from "react-native-uuid";
 
 import AppHeader from "../components/common/AppHeader";
 import AddUser from "../components/AddUser/AddUser";
@@ -14,7 +15,7 @@ const AddUserScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const handleSubmit = (values) => {
-    dispatch(addUser({ name: values.name, dob: values.dob }));
+    dispatch(addUser({ name: values.name, dob: values.dob, id: uuid.v4() }));
     navigation.navigate("Home");
   };
   return (
