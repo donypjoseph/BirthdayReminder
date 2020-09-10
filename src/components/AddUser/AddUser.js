@@ -19,7 +19,7 @@ export const AddUser = (props) => {
   };
 
   const handleConfirm = (date) => {
-    setFieldValue("dob", moment(date).format("YYYY-MM-DD"));
+    setFieldValue("dob", moment(date).format("DD-MMM-YYYY"));
     hideDatePicker();
   };
 
@@ -35,7 +35,7 @@ export const AddUser = (props) => {
       <TouchableOpacity style={appStyles.input} onPress={showDatePicker}>
         <TextInput
           pointerEvents="none"
-          value={moment(values.dob).format("YYYY-MM-DD")}
+          value={moment(values.dob).format("DD-MMM-YYYY")}
         />
       </TouchableOpacity>
       <DateTimePickerModal

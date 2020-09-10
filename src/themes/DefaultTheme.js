@@ -7,4 +7,8 @@ export default {
   labelColor: "#0e101c",
   headerBackgroundColor: "#3D6DCC",
   iconColor: "#517fa4",
+
+  fontsizeBase: 10,
+  fontsizeTitle: 30,
+  fontsizeSubTitle: 20,
 };

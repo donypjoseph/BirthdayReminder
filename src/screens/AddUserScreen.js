@@ -22,7 +22,7 @@ const AddUserScreen = () => {
     <SafeAreaView style={appStyles.container}>
       <ScrollView style={appStyles.scrollView}>
         <Formik
-          initialValues={{ name: "", dob: moment().format("YYYY-MM-DD") }}
+          initialValues={{ name: "", dob: moment().format("DD-MMM-YYYY") }}
           onSubmit={handleSubmit}
         >
           {({ handleChange, handleSubmit, values, setFieldValue }) => (
