@@ -14,10 +14,12 @@ import appStyles from "../themes/styles/AppStyles";
 const AddUserScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+
   const handleSubmit = (values) => {
     dispatch(addUser({ name: values.name, dob: values.dob, id: uuid.v4() }));
     navigation.navigate("Home");
   };
+
   return (
     <SafeAreaView style={appStyles.container}>
       <ScrollView style={appStyles.scrollView}>

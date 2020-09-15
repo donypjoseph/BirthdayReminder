@@ -1,4 +1,5 @@
 import { ADD_USER, REMOVE_USER } from "../actions/UserActions";
+import { State } from "react-native-gesture-handler";
 
 const initialState = {
   user: [],
@@ -13,7 +14,7 @@ const userReducer = (state = initialState, action) => {
     case REMOVE_USER:
       return {
         ...state,
-        user: [...state.user, action.payload],
+        user: state.user.filter(({ id }) => id !== action.id),
       };
     default:
       return state;

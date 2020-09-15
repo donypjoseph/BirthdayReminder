@@ -7,9 +7,12 @@ const ModalBox = (props) => {
   const [selectedIndex, setSelectedIndex] = useState(1);
   const buttons = ["Delete", "cancel"];
 
-  const updateIndex = (selectedIndex) => {
+  const deleteItem = (selectedIndex, id) => {
     setSelectedIndex(selectedIndex);
     if (selectedIndex === 1) {
+      props.toggleOverlay();
+    } else {
+      props.handleSubmit(id);
       props.toggleOverlay();
     }
   };
@@ -33,8 +36,7 @@ const ModalBox = (props) => {
         <Text style={styles.subTitleStyle}>This entry will be deleted.</Text>
         <View style={styles.buttonContainer}>
           <ButtonGroup
-            // onPress={() => setSelectedIndex(selectedIndex)}
-            onPress={updateIndex}
+            onPress={(index) => deleteItem(index, props.id)}
             selectedIndex={selectedIndex}
             buttons={buttons}
             containerStyle={{ height: 50 }}
