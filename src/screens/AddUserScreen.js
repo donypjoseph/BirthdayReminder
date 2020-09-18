@@ -3,7 +3,7 @@ import { SafeAreaView, ScrollView } from "react-native";
 import { Formik } from "formik";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { useNavigation } from "@react-navigation/core";
+import { useNavigation } from "@react-navigation/native";
 import uuid from "react-native-uuid";
 
 import AppHeader from "../components/common/AppHeader";

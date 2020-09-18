@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView, ScrollView } from "react-native";
 import { useSelector } from "react-redux";
-import { useNavigation } from "@react-navigation/core";
+import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 
 import AppHeader from "../components/common/AppHeader";
